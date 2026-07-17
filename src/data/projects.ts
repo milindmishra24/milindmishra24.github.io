@@ -59,7 +59,9 @@ export const projects: Project[] = [
     description:
       "Rather than bending internal workflows to fit off-the-shelf software, I built a project tracking system aligned specifically to Simactricals' own processes and reporting requirements — giving leadership visibility without adding process overhead for the team doing the work.",
     stack: ['Python', 'SQL Server', 'Internal Workflow Design'],
-    video: '',
+    video: '/assets/demos/project-tracking.mp4',
+    videoWebm: '/assets/demos/project-tracking.webm',
+    poster: '/assets/demos/project-tracking.jpg',
   },
   {
     title: 'Charging Data Dashboard',
