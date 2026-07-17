@@ -37,7 +37,9 @@ export const projects: Project[] = [
     description:
       "An internal chatbot that lets employees query company policies conversationally instead of digging through PDFs and shared drives. Built with LLM integration on top of the company's actual policy documents, cutting routine HR queries down to a chat message.",
     stack: ['Python', 'LLM Integration', 'Prompt Engineering', 'Internal API'],
-    video: '', // ← e.g. '/assets/demos/policy-chatbot.mp4' when ready
+    video: '/assets/demos/policy-chatbot.mp4',
+    videoWebm: '/assets/demos/policy-chatbot.webm',
+    poster: '/assets/demos/policy-chatbot.jpg',
   },
   {
     title: 'Employee Portal',
