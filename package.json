@@ -1,0 +1,17 @@
+{
+  "name": "milind-mishra-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Personal portfolio for Milind Mishra — engineer-turned-leader.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^7.1.0"
+  }
+}

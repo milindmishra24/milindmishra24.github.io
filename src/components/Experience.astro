@@ -1,0 +1,73 @@
+---
+import { experience } from '../data/experience';
+---
+
+<section id="experience" class="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Career path</span>
+      <h2>From writing code to leading it</h2>
+      <p>A decade in software engineering, now applied to running operations at Simactricals.</p>
+    </div>
+
+    <ol class="timeline">
+      {experience.map((item) => (
+        <li class="tl-item reveal">
+          <span class="tl-dot" style={`--dot:${item.color}`}></span>
+          <div class="tl-when mono">{item.when}</div>
+          <h3>{item.title}</h3>
+          <div class="tl-org">{item.org}</div>
+          <p>{item.detail}</p>
+          {item.stack && (
+            <div class="tl-stack">
+              {item.stack.map((s) => <span>{s}</span>)}
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .experience { background: var(--bg-soft); }
+  .timeline {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 34px;
+    list-style: none;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute;
+    left: -34px; top: 4px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-soft);
+    box-shadow: 0 0 0 2px var(--dot);
+    background: var(--dot);
+  }
+  .tl-when { font-size: 0.78rem; color: var(--ink-soft); margin-bottom: 4px; }
+  .tl-item h3 { font-size: 1.2rem; margin-bottom: 2px; }
+  .tl-org { font-size: 0.9rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 10px; }
+  .tl-item p { font-size: 0.94rem; color: var(--ink-soft); }
+  .tl-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .tl-stack span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    border-radius: 7px;
+    color: var(--ink-soft);
+  }
+</style>

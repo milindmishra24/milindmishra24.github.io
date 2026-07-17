@@ -1,0 +1,69 @@
+---
+import { hobbies } from '../data/hobbies';
+
+const icons: Record<string, string> = {
+  code: '<path d="M8 6 2 12l6 6M16 6l6 6-6 6M13 4l-2 16"/>',
+  game: '<rect x="2" y="7" width="20" height="10" rx="4"/><path d="M7 12h4M9 10v4M16 11h.01M19 13h.01"/>',
+  travel: '<path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/><circle cx="12" cy="12" r="10"/>',
+  camera: '<path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/>',
+  music: '<path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/>',
+  book: '<path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 0-3 3z"/><path d="M4 4v16"/>',
+};
+---
+
+<section id="hobbies" class="hobbies">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Off the clock</span>
+      <h2>The person behind the work</h2>
+      <p>A few things that keep me curious when I'm not shipping.</p>
+    </div>
+
+    <div class="hob-grid">
+      {hobbies.map((h) => (
+        <article class="hob-card reveal" style={`--accent:${h.accent}`}>
+          <span class="hob-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[h.icon]} />
+          </span>
+          <h3>{h.title}</h3>
+          <p>{h.blurb}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hob-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 860px) { .hob-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .hob-grid { grid-template-columns: 1fr; } }
+
+  .hob-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .hob-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  }
+  .hob-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    margin-bottom: 16px;
+  }
+  .hob-card h3 { font-size: 1.12rem; margin-bottom: 8px; }
+  .hob-card p { font-size: 0.9rem; color: var(--ink-soft); }
+</style>

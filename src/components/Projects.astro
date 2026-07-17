@@ -1,0 +1,251 @@
+---
+import { projects, projectCategories } from '../data/projects';
+---
+
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2>Built for the team I lead</h2>
+      <p>Real tools running inside Simactricals today, engineered end-to-end using an AI agent-driven development workflow.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Filter projects">
+      <button class="chip is-active" data-filter="All" role="tab" aria-selected="true">All</button>
+      {projectCategories.map((c) => (
+        <button class="chip" data-filter={c} role="tab" aria-selected="false">{c}</button>
+      ))}
+    </div>
+
+    <div class="grid" id="project-grid">
+      {projects.map((p) => (
+        <article class="card reveal" data-category={p.category}>
+          <div class="media" style={`--accent:${p.tagColor}`}>
+            {p.youtubeId ? (
+              <button
+                class="video-embed"
+                data-id={p.youtubeId}
+                aria-label={`Play demo video for ${p.title}`}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${p.youtubeId}/hqdefault.jpg`}
+                  alt={`${p.title} demo thumbnail`}
+                  loading="lazy"
+                  width="480"
+                  height="360"
+                />
+                <span class="play-btn" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </button>
+            ) : (
+              <div class="no-video" aria-hidden="true">
+                <span class="pulse-ring"></span>
+                <span class="pulse-ring d2"></span>
+                <span class="film-label mono">DEMO&nbsp;COMING&nbsp;SOON</span>
+              </div>
+            )}
+          </div>
+
+          <div class="body">
+            <span class="tag" style={`--accent:${p.tagColor}`}>{p.category}</span>
+            <h3>{p.title}</h3>
+            <p class="tagline">{p.tagline}</p>
+            <p class="desc">{p.description}</p>
+            <div class="stack">
+              {p.stack.map((s) => <span>{s}</span>)}
+            </div>
+            <div class="links">
+              {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noopener">↗ Live</a>}
+              {p.codeUrl && <a href={p.codeUrl} target="_blank" rel="noopener">↗ Code</a>}
+              {p.caseStudyUrl && <a href={p.caseStudyUrl} target="_blank" rel="noopener">↗ Case study</a>}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="empty-note" id="empty-note" hidden>No projects in this category yet.</p>
+  </div>
+</section>
+
+<style>
+  .projects { background: var(--bg-soft); }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 44px;
+  }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--bg-card);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .chip:hover { border-color: var(--violet); color: var(--violet); }
+  .chip.is-active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+  .card.is-hidden { display: none; }
+
+  .media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: color-mix(in srgb, var(--accent) 12%, var(--bg-card));
+    overflow: hidden;
+  }
+
+  /* lazy video */
+  .video-embed {
+    all: unset;
+    display: block;
+    cursor: pointer;
+    width: 100%; height: 100%;
+    position: relative;
+  }
+  .video-embed img { width: 100%; height: 100%; object-fit: cover; }
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 62px; height: 62px;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 90%, black 0%);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+  }
+  .video-embed:hover .play-btn { transform: scale(1.08); }
+  .video-embed iframe { width: 100%; height: 100%; border: 0; }
+
+  /* placeholder when no video yet */
+  .no-video {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pulse-ring {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0;
+    animation: ring 2.6s ease-out infinite;
+  }
+  .pulse-ring.d2 { animation-delay: 1.3s; }
+  @keyframes ring {
+    0% { transform: scale(0.6); opacity: 0.6; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  .film-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 999px;
+    z-index: 1;
+  }
+
+  .body { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+  .tag {
+    align-self: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .body h3 { font-size: 1.35rem; margin-bottom: 6px; }
+  .tagline { color: var(--ink); font-weight: 500; font-size: 0.98rem; margin-bottom: 12px; }
+  .desc { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 18px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; margin-top: auto; }
+  .stack span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: var(--ink-soft);
+  }
+  .links { display: flex; gap: 12px; }
+  .links a {
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    transition: all 0.2s ease;
+  }
+  .links a:hover { border-color: var(--violet); color: var(--violet); }
+
+  .empty-note { text-align: center; color: var(--ink-soft); margin-top: 20px; }
+</style>
+
+<script>
+  // ---- Tag filtering ----
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const cards = document.querySelectorAll<HTMLElement>('#project-grid .card');
+  const emptyNote = document.getElementById('empty-note');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => { c.classList.remove('is-active'); c.setAttribute('aria-selected', 'false'); });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-selected', 'true');
+      const filter = chip.dataset.filter;
+      let visible = 0;
+      cards.forEach((card) => {
+        const match = filter === 'All' || card.dataset.category === filter;
+        card.classList.toggle('is-hidden', !match);
+        if (match) visible++;
+      });
+      if (emptyNote) emptyNote.hidden = visible !== 0;
+    });
+  });
+
+  // ---- Lazy YouTube embed: only load the iframe on click ----
+  document.querySelectorAll<HTMLElement>('.video-embed').forEach((el) => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      if (!id) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.title = 'Project demo video';
+      el.replaceWith(iframe);
+    });
+  });
+</script>

@@ -1,0 +1,62 @@
+---
+import { site, socials } from '../data/site';
+const year = new Date().getFullYear();
+const links = [
+  { href: '#projects', label: 'Projects' },
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#credentials', label: 'Awards' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <div class="logo"><span class="dot" aria-hidden="true"></span>{site.name}</div>
+      <p>Engineer-turned-leader who still builds. Based in {site.location}.</p>
+    </div>
+
+    <nav class="foot-nav" aria-label="Footer">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="foot-social">
+      {socials.map((s) => (
+        <a href={s.href} target={s.label === 'Email' ? undefined : '_blank'} rel="noopener">{s.label}</a>
+      ))}
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© {year} {site.name}. Built with a little too much love for internal tools.</span>
+    <a href="#top" class="to-top">Back to top ↑</a>
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--line); padding: 48px 0 40px; background: var(--bg-soft); }
+  .foot {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { .foot { grid-template-columns: 1fr; gap: 24px; } }
+  .logo { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--coral); }
+  .foot-brand p { color: var(--ink-soft); font-size: 0.9rem; max-width: 320px; }
+  .foot-nav, .foot-social { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--ink-soft); }
+  .foot-nav a:hover, .foot-social a:hover { color: var(--violet); }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .to-top:hover { color: var(--violet); }
+</style>

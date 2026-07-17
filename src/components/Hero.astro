@@ -1,0 +1,143 @@
+---
+import { site, socials, heroRoles } from '../data/site';
+---
+
+<section class="hero" id="top">
+  <div class="hero-blob blob1" aria-hidden="true"></div>
+  <div class="hero-blob blob2" aria-hidden="true"></div>
+  <div class="hero-blob blob3" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <span class="hero-eyebrow">👋 Open to new opportunities</span>
+
+    <h1>
+      I build software<br />
+      that people <span class="hl">actually enjoy</span> using.
+    </h1>
+
+    <p class="hero-role mono" aria-live="polite">
+      <span aria-hidden="true">&gt;&nbsp;</span><span id="role-text">{heroRoles[0]}</span><span class="caret" aria-hidden="true">▋</span>
+    </p>
+
+    <p class="hero-bio">
+      Senior Manager driving AI-led transformation at Simactricals — a decade of software
+      engineering now channeled into building the chatbots, dashboards, and internal tools my
+      team runs on every day.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">See my work ↓</a>
+      <a href={site.resume} class="btn btn-ghost" download>Download résumé</a>
+    </div>
+
+    <div class="hero-socials">
+      {socials.map((s) => (
+        <a href={s.href} target={s.label === 'Email' ? undefined : '_blank'} rel="noopener" aria-label={s.label}>
+          {s.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ roles: heroRoles }}>
+  // Lightweight typing / rotating title effect.
+  const el = document.getElementById('role-text');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (el && !reduce && roles.length > 1) {
+    let i = 0, j = 0, deleting = false;
+    const tick = () => {
+      const word = roles[i];
+      el.textContent = word.slice(0, j);
+      if (!deleting && j < word.length) { j++; setTimeout(tick, 90); }
+      else if (!deleting && j === word.length) { deleting = true; setTimeout(tick, 1400); }
+      else if (deleting && j > 0) { j--; setTimeout(tick, 45); }
+      else { deleting = false; i = (i + 1) % roles.length; setTimeout(tick, 300); }
+    };
+    setTimeout(tick, 900);
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 96px 0 80px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero-inner { position: relative; z-index: 2; }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3px);
+    opacity: 0.32;
+    animation: float 9s ease-in-out infinite;
+    z-index: 0;
+  }
+  .blob1 { width: 190px; height: 190px; background: var(--coral); top: 40px; left: 6%; }
+  .blob2 { width: 130px; height: 130px; background: var(--teal); top: 180px; right: 10%; animation-delay: 1.5s; }
+  .blob3 { width: 100px; height: 100px; background: var(--marigold); bottom: 10px; left: 18%; animation-delay: 3s; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 6vw, 4.2rem);
+    line-height: 1.06;
+  }
+  .hero h1 .hl {
+    background: linear-gradient(90deg, var(--coral), var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-role {
+    margin-top: 22px;
+    font-size: clamp(1rem, 2.6vw, 1.35rem);
+    color: var(--violet);
+    font-weight: 500;
+    min-height: 1.6em;
+  }
+  .caret { animation: blink 1s step-end infinite; }
+  .hero-bio {
+    max-width: 580px;
+    margin: 20px auto 0;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+  }
+  .hero-actions {
+    margin-top: 34px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-socials {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .hero-socials a { transition: color 0.2s ease; }
+  .hero-socials a:hover { color: var(--violet); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-18px) translateX(8px); }
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+</style>
