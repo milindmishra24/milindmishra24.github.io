@@ -117,6 +117,9 @@ const links = [
     gap: 4px;
     border-bottom: 1px solid var(--line);
   }
+  /* The [hidden] attribute must win over the display above, or the menu
+     shows expanded on load. Author rules beat the UA sheet, so restate it. */
+  .mobile-menu[hidden] { display: none; }
   .mobile-menu a {
     padding: 12px 4px;
     font-weight: 500;

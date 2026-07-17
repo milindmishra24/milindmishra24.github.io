@@ -117,11 +117,21 @@ All content lives in [`src/data/`](src/data/) — you rarely touch markup.
 
 ### 🎬 Adding a project demo video
 
-1. Upload your demo to YouTube (unlisted is fine).
-2. Copy the 11-character video ID from the URL — `https://youtu.be/dQw4w9WgXcQ` → `dQw4w9WgXcQ`.
-3. Paste it into the matching project's `youtubeId` field in `src/data/projects.ts`.
+Demos play as **autoplaying, looping, muted** clips right inside the card — like a GIF, but sharp and far smaller.
 
-The card then shows a thumbnail and loads the player only when clicked. Leave `youtubeId: ''` to show an animated "demo coming soon" placeholder.
+1. Export your screen recording as an **MP4** (H.264). A `.webm` is optional and even smaller.
+2. Drop it in `public/assets/demos/` — e.g. `policy-chatbot.mp4`.
+3. Set the path in the matching project's `video` field in `src/data/projects.ts`:
+   ```ts
+   video: '/assets/demos/policy-chatbot.mp4',
+   // optional extras:
+   videoWebm: '/assets/demos/policy-chatbot.webm',
+   poster: '/assets/demos/policy-chatbot.jpg', // still frame shown before play
+   ```
+
+Leave `video: ''` to show the animated "demo coming soon" placeholder. Videos pause automatically when scrolled out of view to save battery.
+
+> Tip: keep clips short (10–20s) and ~1280×720. Aim for under ~2–3 MB each.
 
 ### ✉️ Enabling the contact form
 
