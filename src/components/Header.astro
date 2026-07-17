@@ -150,18 +150,23 @@ const links = [
     try { localStorage.setItem('theme', next); } catch (e) {}
   });
 
-  // Mobile menu
+  // Mobile menu.
+  // Derive open/closed from the DOM each time and guard against the handler
+  // binding more than once (Astro can re-run island scripts), so a tap always
+  // flips the menu instead of getting stuck when two listeners cancel out.
   const menuBtn = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  menuBtn?.addEventListener('click', () => {
-    const open = menu?.hasAttribute('hidden');
-    if (open) { menu?.removeAttribute('hidden'); } else { menu?.setAttribute('hidden', ''); }
-    menuBtn.setAttribute('aria-expanded', String(!!open));
-  });
-  menu?.querySelectorAll('a').forEach((a) =>
-    a.addEventListener('click', () => {
-      menu.setAttribute('hidden', '');
-      menuBtn?.setAttribute('aria-expanded', 'false');
-    })
-  );
+
+  const setMenu = (open) => {
+    if (!menu || !menuBtn) return;
+    if (open) menu.removeAttribute('hidden');
+    else menu.setAttribute('hidden', '');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  };
+
+  if (menuBtn && !menuBtn.dataset.bound) {
+    menuBtn.dataset.bound = '1';
+    menuBtn.addEventListener('click', () => setMenu(menu?.hasAttribute('hidden') ?? false));
+  }
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 </script>

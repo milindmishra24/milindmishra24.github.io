@@ -47,7 +47,9 @@ export const projects: Project[] = [
     description:
       'Engineered end-to-end in Python using an AI agent-driven development workflow, this portal handles attendance, reimbursement claims, and leave requests through a two-step approval process — replacing manual, paper-based sign-offs with a system managers and employees both trust.',
     stack: ['Python', 'SQL Server', 'AI-Assisted Development', 'Approval Workflows'],
-    video: '',
+    video: '/assets/demos/employee-portal.mp4',
+    videoWebm: '/assets/demos/employee-portal.webm',
+    poster: '/assets/demos/employee-portal.jpg',
   },
   {
     title: 'Project Tracking System',
@@ -67,7 +69,9 @@ export const projects: Project[] = [
     description:
       'A graphical dashboard surfacing charging test-case analytics in real time, so the team gets self-service visibility into results instead of waiting on manual reports — built to make data-grounded decisions the default, not the exception.',
     stack: ['Python', 'SQL Server', 'Crystal Reports', 'Data Visualization'],
-    video: '',
+    video: '/assets/demos/charging-dashboard.mp4',
+    videoWebm: '/assets/demos/charging-dashboard.webm',
+    poster: '/assets/demos/charging-dashboard.jpg',
   },
 ];
 
