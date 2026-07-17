@@ -22,19 +22,33 @@ import { projects, projectCategories } from '../data/projects';
         <article class="card reveal" data-category={p.category}>
           <div class="media" style={`--accent:${p.tagColor}`}>
             {p.video ? (
-              <video
-                class="demo-video"
-                autoplay
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                poster={p.poster}
-                aria-label={`${p.title} demo`}
+              <a
+                class="video-link"
+                href={p.video}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Open the ${p.title} demo video in a new tab`}
               >
-                {p.videoWebm && <source src={p.videoWebm} type="video/webm" />}
-                <source src={p.video} type="video/mp4" />
-              </video>
+                <video
+                  class="demo-video"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  poster={p.poster}
+                  aria-hidden="true"
+                >
+                  {p.videoWebm && <source src={p.videoWebm} type="video/webm" />}
+                  <source src={p.video} type="video/mp4" />
+                </video>
+                <span class="video-overlay" aria-hidden="true">
+                  <span class="video-cue">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    Watch demo
+                  </span>
+                </span>
+              </a>
             ) : (
               <div class="no-video" aria-hidden="true">
                 <span class="pulse-ring"></span>
@@ -115,12 +129,53 @@ import { projects, projectCategories } from '../data/projects';
     overflow: hidden;
   }
 
-  /* autoplaying looping demo video (GIF-like) */
+  /* autoplaying looping demo video (GIF-like), clickable to open in new tab */
+  .video-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
   .demo-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none; /* clicks fall through to the wrapping link */
+  }
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14, 14, 22, 0);
+    opacity: 0;
+    transition: opacity 0.25s ease, background 0.25s ease;
+  }
+  .video-link:hover .video-overlay,
+  .video-link:focus-visible .video-overlay {
+    opacity: 1;
+    background: rgba(14, 14, 22, 0.4);
+  }
+  .video-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+    transform: translateY(6px);
+    transition: transform 0.25s ease;
+  }
+  .video-link:hover .video-cue,
+  .video-link:focus-visible .video-cue {
+    transform: translateY(0);
   }
 
   /* placeholder when no video yet */
