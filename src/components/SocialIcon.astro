@@ -6,6 +6,9 @@ interface Props {
   size?: number;
 }
 const { label, size = 20 } = Astro.props;
+// The outlined envelope reads smaller/lighter than the solid GitHub/LinkedIn
+// glyphs, so render it a touch larger to balance the visual weight.
+const mailSize = Math.round(size * 1.25);
 ---
 
 {label === 'GitHub' && (
@@ -21,8 +24,8 @@ const { label, size = 20 } = Astro.props;
 )}
 
 {label === 'Email' && (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <rect x="2" y="4" width="20" height="16" rx="2"/>
-    <path d="m2 7 10 6 10-6"/>
+  <svg width={mailSize} height={mailSize} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <rect x="1.5" y="4" width="21" height="16" rx="2.5"/>
+    <path d="m2 6.5 10 6 10-6"/>
   </svg>
 )}
