@@ -1,5 +1,6 @@
 ---
 import { site, socials } from '../data/site';
+import SocialIcon from './SocialIcon.astro';
 const year = new Date().getFullYear();
 const links = [
   { href: '#projects', label: 'Projects' },
@@ -23,7 +24,9 @@ const links = [
 
     <div class="foot-social">
       {socials.map((s) => (
-        <a href={s.href} target={s.label === 'Email' ? undefined : '_blank'} rel="noopener">{s.label}</a>
+        <a href={s.href} target={s.label === 'Email' ? undefined : '_blank'} rel="noopener">
+          <SocialIcon label={s.label} size={16} /> {s.label}
+        </a>
       ))}
     </div>
   </div>
@@ -47,6 +50,7 @@ const links = [
   .logo .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--coral); }
   .foot-brand p { color: var(--ink-soft); font-size: 0.9rem; max-width: 320px; }
   .foot-nav, .foot-social { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--ink-soft); }
+  .foot-social a { display: inline-flex; align-items: center; gap: 9px; width: fit-content; }
   .foot-nav a:hover, .foot-social a:hover { color: var(--violet); }
   .foot-bottom {
     display: flex;

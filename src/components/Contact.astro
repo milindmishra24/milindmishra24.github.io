@@ -1,5 +1,6 @@
 ---
 import { contact, socials, WEB3FORMS_ACCESS_KEY } from '../data/site';
+import SocialIcon from './SocialIcon.astro';
 ---
 
 <section id="contact" class="contact-section">
@@ -16,7 +17,9 @@ import { contact, socials, WEB3FORMS_ACCESS_KEY } from '../data/site';
         <div class="direct">
           <a class="direct-btn" href={`mailto:${contact.email}`}>✉&nbsp; Drop me a line</a>
           {socials.filter((s) => s.label !== 'Email').map((s) => (
-            <a class="direct-btn" href={s.href} target="_blank" rel="noopener">{s.label} ↗</a>
+            <a class="direct-btn" href={s.href} target="_blank" rel="noopener">
+              <SocialIcon label={s.label} size={16} /> {s.label}
+            </a>
           ))}
         </div>
       </div>
@@ -87,6 +90,9 @@ import { contact, socials, WEB3FORMS_ACCESS_KEY } from '../data/site';
 
   .direct { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; align-items: flex-start; }
   .direct-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 9px 16px;

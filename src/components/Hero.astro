@@ -1,5 +1,6 @@
 ---
 import { site, socials, heroRoles } from '../data/site';
+import SocialIcon from './SocialIcon.astro';
 ---
 
 <section class="hero" id="top">
@@ -33,7 +34,7 @@ import { site, socials, heroRoles } from '../data/site';
     <div class="hero-socials">
       {socials.map((s) => (
         <a href={s.href} target={s.label === 'Email' ? undefined : '_blank'} rel="noopener" aria-label={s.label}>
-          {s.label}
+          <SocialIcon label={s.label} size={20} />
         </a>
       ))}
     </div>
@@ -126,14 +127,26 @@ import { site, socials, heroRoles } from '../data/site';
   .hero-socials {
     margin-top: 28px;
     display: flex;
-    gap: 24px;
+    gap: 14px;
     justify-content: center;
-    font-size: 0.9rem;
-    font-weight: 500;
     color: var(--ink-soft);
   }
-  .hero-socials a { transition: color 0.2s ease; }
-  .hero-socials a:hover { color: var(--violet); }
+  .hero-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--bg-soft);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .hero-socials a:hover {
+    color: var(--violet);
+    border-color: var(--violet);
+    transform: translateY(-2px);
+  }
 
   @keyframes float {
     0%, 100% { transform: translateY(0) translateX(0); }
