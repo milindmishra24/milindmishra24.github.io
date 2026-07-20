@@ -51,7 +51,7 @@ export const socials = [
 export const heroRoles = [
   'Software Engineer',
   'Team Leader',
-  'AI Builder',
+  'Vibe Coder',
   'Problem Solver',
 ] as const;
 
