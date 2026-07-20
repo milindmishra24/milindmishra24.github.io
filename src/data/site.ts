@@ -50,7 +50,7 @@ export const socials = [
 // Rotating words for the hero typing effect. Edit freely.
 export const heroRoles = [
   'Software Engineer',
-  'Operations Leader',
+  'Team Leader',
   'AI Builder',
   'Problem Solver',
 ] as const;
