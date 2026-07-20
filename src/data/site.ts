@@ -61,4 +61,4 @@ export const heroRoles = [
 // 2. Paste it below. Submissions then arrive in your inbox. No backend needed.
 // Until you add a key, the form falls back gracefully and the mailto button still works.
 // -------------------------------------------------------------------
-export const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY';
+export const WEB3FORMS_ACCESS_KEY = '81f8aeac-1521-4438-aa59-f02044b555cd';
