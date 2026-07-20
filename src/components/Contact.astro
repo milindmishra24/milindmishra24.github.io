@@ -15,7 +15,7 @@ import SocialIcon from './SocialIcon.astro';
         </p>
 
         <div class="direct">
-          <a class="direct-btn" href={`mailto:${contact.email}`}>✉&nbsp; Drop me a line</a>
+          <a class="direct-btn" href={`mailto:${contact.email}`}><SocialIcon label="Email" size={16} /> Drop me a line</a>
           {socials.filter((s) => s.label !== 'Email').map((s) => (
             <a class="direct-btn" href={s.href} target="_blank" rel="noopener">
               <SocialIcon label={s.label} size={16} /> {s.label}
