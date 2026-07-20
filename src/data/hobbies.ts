@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------------
 
 export interface Hobby {
-  icon: 'code' | 'game' | 'travel' | 'camera' | 'music' | 'book';
+  icon: 'code' | 'game' | 'travel' | 'camera' | 'music' | 'book' | 'globe' | 'sports' | 'cook' | 'car';
   title: string;
   blurb: string;
   accent: string;
@@ -12,27 +12,39 @@ export interface Hobby {
 
 export const hobbies: Hobby[] = [
   {
-    icon: 'code',
-    title: 'Building side tools',
-    blurb: 'I never really stopped shipping — most weekends there is some small tool getting built.',
-    accent: 'var(--coral)',
-  },
-  {
-    icon: 'game',
-    title: 'Gaming',
-    blurb: 'Strategy and story-driven games — the same problem-solving itch, different playground.',
-    accent: 'var(--teal)',
+    icon: 'camera',
+    title: 'Photography',
+    blurb: 'Chasing light and framing moments — an eye for detail that carries into everything else.',
+    accent: 'var(--sky)',
   },
   {
     icon: 'travel',
-    title: 'Travel',
-    blurb: 'New cities, new perspectives. The best ideas tend to arrive somewhere far from a desk.',
+    title: 'Exploring new places',
+    blurb: 'Always up for visiting somewhere new — new cities, new perspectives, new ideas.',
     accent: 'var(--marigold)',
   },
   {
-    icon: 'camera',
-    title: 'Photography',
-    blurb: 'Chasing light and framing moments — an eye for detail that carries into design too.',
+    icon: 'globe',
+    title: 'Geopolitics',
+    blurb: 'Following how the world moves — the economics, power, and stories behind the headlines.',
+    accent: 'var(--violet)',
+  },
+  {
+    icon: 'sports',
+    title: 'Pickleball, badminton & cricket',
+    blurb: 'Racket and field sports keep me sharp — competitive, social, and a good reason to stay active.',
+    accent: 'var(--teal)',
+  },
+  {
+    icon: 'cook',
+    title: 'Cooking',
+    blurb: 'Experimenting in the kitchen — a recipe is just another system worth getting right.',
+    accent: 'var(--coral)',
+  },
+  {
+    icon: 'car',
+    title: 'Long drives',
+    blurb: '35,000+ km behind the wheel and counting — give me an open road and a good playlist.',
     accent: 'var(--sky)',
   },
 ];
