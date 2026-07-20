@@ -19,7 +19,7 @@ import { projects, projectCategories } from '../data/projects';
 
     <div class="grid" id="project-grid">
       {projects.map((p) => (
-        <article class="card reveal" data-category={p.category}>
+        <article class="card reveal" data-categories={p.categories.join('|')}>
           <div class="media" style={`--accent:${p.tagColor}`}>
             {p.video ? (
               <a
@@ -59,7 +59,7 @@ import { projects, projectCategories } from '../data/projects';
           </div>
 
           <div class="body">
-            <span class="tag" style={`--accent:${p.tagColor}`}>{p.category}</span>
+            <span class="tag" style={`--accent:${p.tagColor}`}>{p.categories[0]}</span>
             <h3>{p.title}</h3>
             <p class="tagline">{p.tagline}</p>
             <p class="desc">{p.description}</p>
@@ -263,7 +263,8 @@ import { projects, projectCategories } from '../data/projects';
       const filter = chip.dataset.filter;
       let visible = 0;
       cards.forEach((card) => {
-        const match = filter === 'All' || card.dataset.category === filter;
+        const cats = (card.dataset.categories || '').split('|');
+        const match = filter === 'All' || cats.includes(filter as string);
         card.classList.toggle('is-hidden', !match);
         if (match) visible++;
       });

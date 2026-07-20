@@ -11,11 +11,14 @@
 //   Leave `video` empty ('') to show the animated "demo coming soon" placeholder.
 // ---------------------------------------------------------------------------
 
-export type Category = 'AI' | 'Web' | 'Data' | 'Internal Tools';
+export type Category = 'Web' | 'AI' | 'Data' | 'Internal Tools';
 
 export interface Project {
   title: string;
-  category: Category;
+  // A project can belong to several categories — every project is a Web app,
+  // plus its focus (AI / Data / Internal Tools). The first entry is shown as
+  // the card's tag; all entries are matched by the filter chips.
+  categories: Category[];
   tagColor: string; // accent used for the tag + video border
   tagline: string;
   description: string;
@@ -31,7 +34,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: 'Policy Chatbot',
-    category: 'AI',
+    categories: ['AI', 'Web'],
     tagColor: 'var(--coral)',
     tagline: 'Ask HR a question, get a straight answer — instantly.',
     description:
@@ -43,7 +46,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Employee Portal',
-    category: 'Internal Tools',
+    categories: ['Internal Tools', 'Web'],
     tagColor: 'var(--marigold)',
     tagline: 'Attendance, reimbursements, and leave — with real approvals.',
     description:
@@ -55,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Project Tracking System',
-    category: 'Internal Tools',
+    categories: ['Internal Tools', 'Web'],
     tagColor: 'var(--teal)',
     tagline: 'A tracker shaped around how the team actually works.',
     description:
@@ -67,7 +70,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Charging Data Dashboard',
-    category: 'Data',
+    categories: ['Data', 'Web'],
     tagColor: 'var(--sky)',
     tagline: 'Test-case analytics, visible the moment they happen.',
     description:
@@ -80,4 +83,4 @@ export const projects: Project[] = [
 ];
 
 // Filter chips shown above the grid. 'All' is added automatically.
-export const projectCategories: Category[] = ['AI', 'Web', 'Data', 'Internal Tools'];
+export const projectCategories: Category[] = ['Web', 'AI', 'Data', 'Internal Tools'];
