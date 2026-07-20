@@ -15,7 +15,6 @@ import { contact, socials, WEB3FORMS_ACCESS_KEY } from '../data/site';
 
         <div class="direct">
           <a class="direct-btn" href={`mailto:${contact.email}`}>✉&nbsp; Drop me a line</a>
-          <a class="direct-btn" href={contact.phoneHref}>📞&nbsp; {contact.phone}</a>
           {socials.filter((s) => s.label !== 'Email').map((s) => (
             <a class="direct-btn" href={s.href} target="_blank" rel="noopener">{s.label} ↗</a>
           ))}

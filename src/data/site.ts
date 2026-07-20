@@ -27,8 +27,6 @@ export const site = {
 
 export const contact = {
   email: 'milind.mishra24@gmail.com',
-  phone: '+91-9871180551',
-  phoneHref: 'tel:+919871180551',
 } as const;
 
 export const socials = [
