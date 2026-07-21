@@ -52,6 +52,7 @@ export const heroRoles = [
   'Software Engineer',
   'Team Leader',
   'Vibe Coder',
+  'AI-Assisted Coder',
   'Problem Solver',
 ] as const;
 
