@@ -24,7 +24,7 @@ import { projects, projectCategories } from '../data/projects';
             {p.video ? (
               <a
                 class="video-link"
-                href={p.video}
+                href={p.videoFull ?? p.video}
                 target="_blank"
                 rel="noopener"
                 aria-label={`Open the ${p.title} demo video in a new tab`}

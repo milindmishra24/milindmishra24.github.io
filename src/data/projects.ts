@@ -26,6 +26,9 @@ export interface Project {
   video: string; // '' = no demo yet → animated placeholder. e.g. '/assets/demos/chatbot.mp4'
   videoWebm?: string; // optional WebM source for smaller size
   poster?: string; // optional still frame shown before playback
+  // Optional higher-resolution version opened when the card is clicked. The
+  // inline `video` stays small for fast autoplay; this is the full-quality one.
+  videoFull?: string;
   liveUrl?: string;
   codeUrl?: string;
   caseStudyUrl?: string;
@@ -79,6 +82,8 @@ export const projects: Project[] = [
     video: '/assets/demos/charging-dashboard.mp4',
     videoWebm: '/assets/demos/charging-dashboard.webm',
     poster: '/assets/demos/charging-dashboard.jpg',
+    // Full-resolution 1080p clip opened by the "Watch demo" click-through.
+    videoFull: '/assets/demos/charging-dashboard-full.mp4',
   },
 ];
 
