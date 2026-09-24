@@ -13,6 +13,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, site.url).href;
+const gaId = import.meta.env.PROD ? site.gaMeasurementId : '';
 const ogImageUrl = new URL(site.ogImage, site.url).href;
 
 // JSON-LD structured data — helps Google show a rich "Person" result.
@@ -34,6 +35,20 @@ const personSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Analytics 4 (set gaMeasurementId in src/data/site.ts) -->
+    {gaId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline define:vars={{ gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />

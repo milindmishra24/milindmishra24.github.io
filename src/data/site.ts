@@ -23,6 +23,10 @@ export const site = {
 
   // Path to your CV in /public. Swap the file, keep the name, and this link keeps working.
   resume: '/assets/cv/Milind-Mishra-CV.pdf',
+
+  // Google Analytics 4 Measurement ID (looks like 'G-XXXXXXXXXX').
+  // Leave empty to disable. Only loads on production builds, not `npm run dev`.
+  gaMeasurementId: 'G-M6KMW6PPVD',
 } as const;
 
 export const contact = {
