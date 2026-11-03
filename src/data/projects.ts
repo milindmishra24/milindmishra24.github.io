@@ -53,7 +53,7 @@ export const projects: Project[] = [
     tagColor: 'var(--marigold)',
     tagline: 'Attendance, reimbursements, and leave — with real approvals.',
     description:
-      'Engineered end-to-end in Python using an AI agent-driven development workflow, this portal handles attendance, reimbursement claims, and leave requests through a two-step approval process — replacing manual, paper-based sign-offs with a system managers and employees both trust.',
+      'Engineered end-to-end in Python using an AI agent-driven development workflow, this portal moved attendance, reimbursement claims, and leave requests from paper to digital, routing each one through a structured two-step approval — a system managers and employees both trust.',
     stack: ['Python', 'SQL Server', 'AI-Assisted Development', 'Approval Workflows'],
     video: '/assets/demos/employee-portal.mp4',
     videoWebm: '/assets/demos/employee-portal.webm',
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     tagColor: 'var(--teal)',
     tagline: 'A tracker shaped around how the team actually works.',
     description:
-      "Rather than bending internal workflows to fit off-the-shelf software, I built a project tracking system aligned specifically to Simactricals' own processes and reporting requirements — giving leadership visibility without adding process overhead for the team doing the work.",
+      "Rather than bending internal workflows to fit off-the-shelf software, I built a scrum-based project tracking system aligned specifically to Simactricals' own processes and reporting requirements — giving leadership visibility into progress without adding process overhead for the team doing the work.",
     stack: ['Python', 'SQL Server', 'Internal Workflow Design'],
     video: '/assets/demos/project-tracking.mp4',
     videoWebm: '/assets/demos/project-tracking.webm',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     tagColor: 'var(--sky)',
     tagline: 'Test-case analytics, visible the moment they happen.',
     description:
-      'A graphical dashboard surfacing charging test-case analytics in real time, so the team gets self-service visibility into results instead of waiting on manual reports — built to make data-grounded decisions the default, not the exception.',
+      'Part of the data acquisition and analysis tooling behind our wireless charger development: a graphical dashboard surfacing charging test-case analytics in real time, so the team gets self-service visibility into results instead of waiting on manual reports.',
     stack: ['Python', 'SQL Server', 'Crystal Reports', 'Data Visualization'],
     video: '/assets/demos/charging-dashboard.mp4',
     videoWebm: '/assets/demos/charging-dashboard.webm',

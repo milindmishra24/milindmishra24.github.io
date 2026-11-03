@@ -12,12 +12,17 @@ import { experience } from '../data/experience';
 
     <ol class="timeline">
       {experience.map((item) => (
-        <li class="tl-item reveal">
-          <span class="tl-dot" style={`--dot:${item.color}`}></span>
+        <li class="tl-item reveal" style={`--dot:${item.color}`}>
+          <span class="tl-dot"></span>
           <div class="tl-when mono">{item.when}</div>
           <h3>{item.title}</h3>
           <div class="tl-org">{item.org}</div>
           <p>{item.detail}</p>
+          {item.highlights && (
+            <ul class="tl-hl">
+              {item.highlights.map((h) => <li>{h}</li>)}
+            </ul>
+          )}
           {item.stack && (
             <div class="tl-stack">
               {item.stack.map((s) => <span>{s}</span>)}
@@ -60,7 +65,17 @@ import { experience } from '../data/experience';
   .tl-item h3 { font-size: 1.2rem; margin-bottom: 2px; }
   .tl-org { font-size: 0.9rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 10px; }
   .tl-item p { font-size: 0.94rem; color: var(--ink-soft); }
-  .tl-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .tl-hl { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 7px; }
+  .tl-hl li { position: relative; padding-left: 18px; font-size: 0.9rem; color: var(--ink-soft); }
+  .tl-hl li::before {
+    content: '';
+    position: absolute;
+    left: 2px; top: 0.62em;
+    width: 6px; height: 6px;
+    border-radius: 2px;
+    background: var(--dot);
+  }
+  .tl-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
   .tl-stack span {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
